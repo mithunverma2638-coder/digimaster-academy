@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment - DigiMaster Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+*, *::before, *::after { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+:root {
+  --primary: #6C63FF;
+  --primary-light: #8E7FFF;
+  --primary-dark: #5548CC;
+  --secondary: #FF6B9D;
+  --accent-cyan: #00D9FF;
+  --accent-lime: #39FF14;
+  --dark-bg: #0A0E27;
+  --dark-card: #141B35;
+  --dark-hover: #1A2547;
+  --text-primary: #E8EAFF;
+  --text-secondary: #A8ADCF;
+  --text-muted: #7B82B0;
+  --border: rgba(108,99,255,0.1);
+  --border-hover: rgba(108,99,255,0.25);
+  --success: #39FF14;
+  --warning: #FFB700;
+}
+
+html { 
+  scroll-behavior: smooth; 
+}
+
+body {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--dark-bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 16px;
+  overflow-x: hidden;
+  transition: background 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6, .logo {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: 0.09em;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 5%;
+  background: rgba(10, 14, 39, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.logo span { 
+  background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+nav ul {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+nav ul li a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: var(--text-primary);
+}
+
+main {
+  min-height: 70vh;
+  padding-top: 9rem;
+  padding: 6rem 5% 3rem;
+  background: linear-gradient(135deg, var(--dark-bg) 0%, rgba(20, 27, 53, 0.4) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(108, 99, 255, 0.1);
+  border: 1px solid rgba(108, 99, 255, 0.3);
+  color: var(--primary-light);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  border-radius: 50px;
+  margin-bottom: 1.5rem;
+  width: fit-content;
+}
+
+main h1 {
+  font-size: clamp(2.5rem, 6vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 0.09em;
+  max-width: 800px;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+main p {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 560px;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+
+.payment-summary {
+  max-width: 700px;
+  margin: 2rem auto 0;
+  background: var(--dark-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 2rem;
+  animation: fadeUp 0.6s ease both;
+}
+
+.payment-summary h2 {
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+}
+
+.payment-summary div {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.payment-summary strong {
+  color: var(--text-primary);
+}
+
+.payment-summary span {
+  color: var(--text-secondary);
+}
+
+.payment-summary p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 1.5rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.01em;
+  box-shadow: 0 8px 25px rgba(108, 99, 255, 0.35);
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 1.5rem;
+  margin-right: 1rem;
+}
+
+.btn-primary:hover { 
+  background: linear-gradient(135deg, var(--primary-light), var(--accent-cyan));
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(108, 99, 255, 0.5);
+}
+
+.payment-summary a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.payment-summary a:hover {
+  color: var(--text-primary);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+  }
+}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="Digital_Marketing.html" class="logo">Digi<span>Master</span></a>
+    <ul>
+      <li><a href="Digital_Marketing.html#courses">Courses</a></li>
+      <li><a href="Digital_Marketing.html#curriculum">Curriculum</a></li>
+      <li><a href="Digital_Marketing.html#why-us">Why Us</a></li>
+      <li><a href="Digital_Marketing.html#pricing">Pricing</a></li>
+      <li><a href="Digital_Marketing.html#testimonials">Reviews</a></li>
+      <li><a href="Digital_Marketing.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="hero" style="min-height: 70vh; padding-top: 9rem;">
+    <div class="hero-badge">Secure Payment</div>
+    <h1 class="hero-subtitle">Complete Your Payment</h1>
+    <p class="hero-sub">Review your details and continue to the secure checkout experience.</p>
+
+    <div class="payment-summary" style="max-width: 700px; margin: 2rem auto 0; background: var(--dark-card); border: 1px solid var(--border); border-radius: 18px; padding: 2rem;">
+      <h2 style="margin-bottom: 1rem;">Your Details</h2>
+      <div style="display:grid; gap:1rem;">
+        <div><strong>Name:</strong> <span id="summary-name">-</span></div>
+        <div><strong>Email:</strong> <span id="summary-email">-</span></div>
+        <div><strong>Phone:</strong> <span id="summary-phone">-</span></div>
+      </div>
+      <p style="margin-top:1.5rem; color: var(--text-secondary);">This is a preview page. For real payment processing, connect a payment gateway like Razorpay, Stripe, or PayU.</p>
+      <a id="pay-button" href="#" class="btn-primary" style="display:inline-block; margin-top:1.5rem;">Pay Now</a>
+      <a href="Digital_Marketing.html#enroll" style="display:inline-block; margin-top:1.5rem; margin-left:1rem; color: var(--text-muted);">Edit Details</a>
+    </div>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById('summary-name').textContent = params.get('name') || 'Not provided';
+    document.getElementById('summary-email').textContent = params.get('email') || 'Not provided';
+    document.getElementById('summary-phone').textContent = params.get('phone') || 'Not provided';
+    document.getElementById('pay-button').href = 'https://example.com/checkout?name=' + encodeURIComponent(params.get('name') || '') + '&email=' + encodeURIComponent(params.get('email') || '');
+  </script>
+</body>
+</html>
